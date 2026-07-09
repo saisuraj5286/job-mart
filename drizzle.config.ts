@@ -6,7 +6,8 @@ export default {
   schema: "./src/server/db/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: env.DATABASE_URL,
+    // migrations need the direct (non-pooled) connection
+    url: env.DIRECT_URL,
   },
   tablesFilter: ["job-mart_*"],
 } satisfies Config;

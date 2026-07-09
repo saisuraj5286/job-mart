@@ -5,6 +5,9 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  // a stray lockfile above the project makes Next mis-infer the workspace root
+  outputFileTracingRoot: import.meta.dirname,
+};
 
 export default config;
