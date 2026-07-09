@@ -1,8 +1,5 @@
-import {
-  createCallerFactory,
-  createTRPCRouter,
-  publicProcedure,
-} from "~/server/api/trpc";
+import { jobRouter } from "~/server/api/routers/job";
+import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
  * This is the primary router for your server.
@@ -10,8 +7,7 @@ import {
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  // placeholder until feature routers land (auth, job, application, ...)
-  health: publicProcedure.query(() => ({ ok: true })),
+  job: jobRouter,
 });
 
 // export type definition of API
