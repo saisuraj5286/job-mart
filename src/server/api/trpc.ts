@@ -6,10 +6,11 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
+import { validateRequest } from "~/server/auth";
 import { db } from "~/server/db";
 
 /**
@@ -25,8 +26,11 @@ import { db } from "~/server/db";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
+  const { user, session } = await validateRequest();
   return {
     db,
+    user,
+    session,
     ...opts,
   };
 };
@@ -104,3 +108,40 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
  * are logged in.
  */
 export const publicProcedure = t.procedure.use(timingMiddleware);
+
+/**
+ * Authenticated procedure — guarantees `ctx.user` and `ctx.session` are set.
+ */
+export const protectedProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(({ ctx, next }) => {
+    if (!ctx.user || !ctx.session) {
+      throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    return next({
+      ctx: { user: ctx.user, session: ctx.session },
+    });
+  });
+
+/**
+ * RBAC procedures — restrict to a single role.
+ */
+export const seekerProcedure = protectedProcedure.use(({ ctx, next }) => {
+  if (ctx.user.role !== "seeker") {
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "Only job seekers can do this",
+    });
+  }
+  return next();
+});
+
+export const employerProcedure = protectedProcedure.use(({ ctx, next }) => {
+  if (ctx.user.role !== "employer") {
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "Only employers can do this",
+    });
+  }
+  return next();
+});

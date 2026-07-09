@@ -63,7 +63,7 @@ export const users = createTable(
 export const sessions = createTable(
   "session",
   (d) => ({
-    // sha256 hex of the session token — the raw token never touches the DB
+    // Lucia session ID (40-char token)
     id: d.varchar({ length: 64 }).primaryKey(),
     userId: d
       .uuid()

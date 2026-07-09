@@ -8,6 +8,8 @@ import "./src/env.js";
 const config = {
   // a stray lockfile above the project makes Next mis-infer the workspace root
   outputFileTracingRoot: import.meta.dirname,
+  // native module — must not be bundled (lucia tutorial requirement)
+  serverExternalPackages: ["@node-rs/argon2"],
 };
 
 export default config;
