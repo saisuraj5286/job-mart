@@ -23,6 +23,7 @@ import {
 } from "~/lib/format";
 import { JobCard, JobCardSkeleton } from "~/components/jobs/job-card";
 import { JobFiltersPanel } from "~/components/jobs/job-filters-panel";
+import { SaveJobButton } from "~/components/jobs/save-job-button";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -75,6 +76,10 @@ export function JobsBrowser() {
   const query = api.job.list.useInfiniteQuery(filters, {
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
+  const { data: me } = api.auth.me.useQuery(undefined, {
+    staleTime: 60 * 1000,
+  });
+  const viewer = me === undefined ? undefined : (me?.role ?? "guest");
 
   const jobs = query.data?.pages.flatMap((page) => page.items) ?? [];
   const total = query.data?.pages[0]?.total ?? 0;
@@ -259,7 +264,19 @@ export function JobsBrowser() {
           <>
             <div className="space-y-3">
               {jobs.map((job) => (
-                <JobCard key={job.id} job={job} />
+                <JobCard
+                  key={job.id}
+                  job={job}
+                  actions={
+                    viewer && (
+                      <SaveJobButton
+                        jobId={job.id}
+                        jobSlug={job.slug}
+                        viewer={viewer}
+                      />
+                    )
+                  }
+                />
               ))}
             </div>
             {query.hasNextPage && (

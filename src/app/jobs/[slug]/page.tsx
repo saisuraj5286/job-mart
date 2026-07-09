@@ -64,7 +64,20 @@ export default async function JobDetailPage({
     api.job.similar({ jobId: job.id }),
   ]);
   const viewer = user ? user.role : "guest";
+  const existingApplication =
+    viewer === "seeker"
+      ? await api.application.statusForJob({ jobId: job.id })
+      : null;
   const salary = formatSalary(job.salaryMin, job.salaryMax, job.currency);
+
+  const applyCtaProps = {
+    jobId: job.id,
+    jobSlug: job.slug,
+    jobTitle: job.title,
+    companyName: job.company.name,
+    viewer,
+    initiallyApplied: !!existingApplication,
+  } as const;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
@@ -137,7 +150,7 @@ export default async function JobDetailPage({
                     {WORK_MODE_LABELS[job.workMode]} · {job.location}
                   </p>
                 </div>
-                <ApplyCta jobSlug={job.slug} viewer={viewer} className="w-full" />
+                <ApplyCta {...applyCtaProps} className="w-full" />
                 <p className="text-muted-foreground text-xs">
                   Applications include a short cover note and a resume link.
                 </p>
@@ -209,7 +222,7 @@ export default async function JobDetailPage({
               <p className="text-muted-foreground text-xs">{salary}</p>
             )}
           </div>
-          <ApplyCta jobSlug={job.slug} viewer={viewer} />
+          <ApplyCta {...applyCtaProps} />
         </div>
       </div>
       <div className="h-16 lg:hidden" />

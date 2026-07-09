@@ -1,4 +1,7 @@
+import { applicationRouter } from "~/server/api/routers/application";
+import { authRouter } from "~/server/api/routers/auth";
 import { jobRouter } from "~/server/api/routers/job";
+import { savedJobRouter } from "~/server/api/routers/saved-job";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -7,7 +10,10 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
+  auth: authRouter,
   job: jobRouter,
+  application: applicationRouter,
+  savedJob: savedJobRouter,
 });
 
 // export type definition of API
