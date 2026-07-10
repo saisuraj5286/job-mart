@@ -4,7 +4,7 @@ import { BriefcaseBusinessIcon } from "lucide-react";
 export function SiteFooter() {
   return (
     <footer className="border-t">
-      <div className="text-muted-foreground mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm sm:flex-row sm:px-6">
+      <div className="text-muted-foreground flex w-full flex-col items-center justify-between gap-4 px-4 py-8 text-sm sm:flex-row sm:px-6">
         <div className="flex items-center gap-2">
           <BriefcaseBusinessIcon className="size-4" />
           <span>

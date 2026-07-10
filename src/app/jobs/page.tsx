@@ -23,7 +23,7 @@ export default async function JobsPage({
 
   return (
     <HydrateClient>
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="w-full px-4 py-8 sm:px-6">
         <header className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
             Browse jobs
@@ -35,7 +35,7 @@ export default async function JobsPage({
         </header>
         <Suspense
           fallback={
-            <div className="space-y-3 lg:ml-[272px]">
+            <div className="space-y-3 lg:ml-[calc(20%+2rem)]">
               {Array.from({ length: 5 }).map((_, i) => (
                 <JobCardSkeleton key={i} />
               ))}

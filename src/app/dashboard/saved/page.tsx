@@ -15,7 +15,7 @@ export default async function SavedJobsPage() {
 
   return (
     <HydrateClient>
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="w-full px-4 py-8 sm:px-6">
         <header className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
             Saved jobs

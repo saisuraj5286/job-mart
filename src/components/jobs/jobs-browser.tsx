@@ -135,7 +135,7 @@ export function JobsBrowser() {
   ];
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
+    <div className="grid gap-8 lg:grid-cols-[20%_1fr]">
       {/* desktop filter sidebar */}
       <aside className="hidden lg:block">
         <div className="sticky top-24">

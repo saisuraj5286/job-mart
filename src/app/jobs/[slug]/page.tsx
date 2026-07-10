@@ -80,8 +80,8 @@ export default async function JobDetailPage({
   } as const;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-      <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+    <div className="w-full px-4 py-8 sm:px-6">
+      <div className="grid gap-8 lg:grid-cols-[1fr_25%]">
         {/* main column */}
         <article className="min-w-0">
           <header className="mb-6">
@@ -215,7 +215,7 @@ export default async function JobDetailPage({
 
       {/* mobile sticky apply bar */}
       <div className="bg-background/95 fixed inset-x-0 bottom-0 z-40 border-t p-3 backdrop-blur-md lg:hidden">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-1">
+        <div className="flex w-full items-center justify-between gap-3 px-1">
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold">{job.title}</p>
             {salary && (
