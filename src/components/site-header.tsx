@@ -19,17 +19,18 @@ export async function SiteHeader() {
             </span>
             <span className="text-lg tracking-tight">JobMart</span>
           </Link>
-          <nav className="hidden items-center gap-1 sm:flex">
+          <nav className="flex items-center gap-1">
             <Button variant="ghost" size="sm" asChild>
               <Link href="/jobs">Browse jobs</Link>
             </Button>
+            {/* role links live in the avatar menu on mobile */}
             {user?.role === "employer" && (
-              <Button variant="ghost" size="sm" asChild>
+              <Button variant="ghost" size="sm" className="max-sm:hidden" asChild>
                 <Link href="/dashboard/jobs">My job posts</Link>
               </Button>
             )}
             {user?.role === "seeker" && (
-              <Button variant="ghost" size="sm" asChild>
+              <Button variant="ghost" size="sm" className="max-sm:hidden" asChild>
                 <Link href="/dashboard/applications">My applications</Link>
               </Button>
             )}
