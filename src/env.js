@@ -8,7 +8,8 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
-    DIRECT_URL: z.string().url(),
+    // only needed locally for drizzle-kit (db:push) — not set in production
+    DIRECT_URL: z.string().url().optional(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
