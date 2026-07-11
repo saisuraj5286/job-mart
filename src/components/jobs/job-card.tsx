@@ -21,7 +21,7 @@ export function JobCard({
   const salary = formatSalary(job.salaryMin, job.salaryMax, job.currency);
 
   return (
-    <Card className="hover:border-primary/40 relative py-0 transition-colors">
+    <Card className="hover:ring-foreground/20 hover:shadow-md relative py-0 transition-all duration-200 hover:-translate-y-0.5">
       <CardContent className="flex gap-4 p-5">
         <Avatar className="mt-0.5 size-12 rounded-lg">
           <AvatarImage

@@ -80,7 +80,7 @@ export default async function JobDetailPage({
   } as const;
 
   return (
-    <div className="w-full px-4 py-8 sm:px-6">
+    <div className="mx-auto w-full max-w-360 px-4 py-8 sm:px-6 lg:px-8">
       <div className="grid gap-8 lg:grid-cols-[1fr_25%]">
         {/* main column */}
         <article className="min-w-0">

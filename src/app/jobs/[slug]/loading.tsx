@@ -2,8 +2,8 @@ import { Skeleton } from "~/components/ui/skeleton";
 
 export default function JobDetailLoading() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-      <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+    <div className="mx-auto w-full max-w-360 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="grid gap-8 lg:grid-cols-[1fr_25%]">
         <div className="space-y-6">
           <div className="flex items-center gap-3">
             <Skeleton className="size-14 rounded-xl" />

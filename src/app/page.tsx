@@ -24,8 +24,8 @@ export default async function Home() {
     <>
       {/* hero */}
       <section className="border-b">
-        <div className="w-full px-4 py-16 sm:px-6 sm:py-24">
-          <div className="mx-auto w-full text-center sm:w-[75%] lg:w-[50%]">
+        <div className="mx-auto w-full max-w-360 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+          <div className="mx-auto w-full max-w-2xl text-center">
             <Badge variant="secondary" className="mb-4">
               <SparklesIcon className="size-3" />
               {stats.jobs} open roles right now
@@ -42,7 +42,7 @@ export default async function Home() {
             <form
               action="/jobs"
               method="get"
-              className="mx-auto mt-8 flex w-full gap-2 sm:w-[80%]"
+              className="mx-auto mt-8 flex w-full max-w-xl gap-2"
             >
               <div className="relative flex-1">
                 <SearchIcon className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
@@ -78,7 +78,7 @@ export default async function Home() {
       </section>
 
       {/* latest jobs */}
-      <section className="w-full px-4 py-12 sm:px-6">
+      <section className="mx-auto w-full max-w-360 px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
@@ -104,7 +104,7 @@ export default async function Home() {
 
       {/* dual CTA */}
       <section className="border-t">
-        <div className="grid w-full gap-6 px-4 py-12 sm:px-6 md:grid-cols-2">
+        <div className="mx-auto grid w-full max-w-360 gap-6 px-4 py-12 sm:px-6 md:grid-cols-2 lg:px-8">
           <div className="bg-muted/40 rounded-xl border p-8">
             <SearchIcon className="text-primary mb-3 size-8" />
             <h3 className="text-lg font-semibold">Looking for work?</h3>
