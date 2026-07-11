@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main, jobs]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Lint, typecheck & build
+    runs-on: ubuntu-latest
+
+    env:
+      # env validation is skipped in CI — no database is needed because
+      # every route is server-rendered on demand (nothing static hits the DB)
+      SKIP_ENV_VALIDATION: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
