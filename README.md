@@ -89,6 +89,15 @@ pnpm dev       # http://localhost:3000
 - **Schema** (`src/server/db/schema.ts`): users, sessions, companies, jobs, applications (unique per job+seeker), saved_jobs — all tables prefixed `job-mart_`
 - **Job search**: keyset cursor pagination with stable totals; drafts and closed jobs never leak into public queries
 
+## Future scope
+
+- **Match score** — rank jobs for seekers (and applicants for employers) by skill/experience/salary fit
+- **LLM resume generation** — tailor a resume to a job posting from the seeker's profile
+- **ATS score** — resume-vs-job-description analysis with improvement suggestions
+- **Semantic search**, **job alerts** from saved filter URLs, **resume uploads**, **interview scheduling**, and **employer analytics**
+
+See [docs/README.md](docs/README.md#future-scope) for details.
+
 ## Try the full loop
 
 1. Browse `/jobs`, filter by tags/salary — notice the URL updates; share it

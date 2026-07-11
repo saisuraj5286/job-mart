@@ -27,7 +27,7 @@ users ──1:1── companies (ownerId unique)
 ```
 
 - `users.role` — enum `seeker | employer`, set at sign-up, drives all RBAC
-- `jobs` — enums for type/work-mode/status, `tags text[]`, salary range, view counter, unique slug
+- `jobs` — enums for type/work-mode/experience-level/status, `tags text[]`, salary range (INR by default), view counter, unique slug
 - `applications` — status enum (`pending → reviewed → shortlisted → rejected/hired`); the **unique(jobId, seekerId)** constraint is the last line of the duplicate-application guard
 - Indexes on the hot paths: `jobs(status, createdAt)` for the public board, FK indexes for dashboards
 
@@ -61,7 +61,7 @@ On top of role checks, every employer mutation verifies **ownership** by joining
 
 Notable details:
 
-- **Search & filters** — `job.list` composes SQL conditions dynamically (ILIKE keyword across title/company/tags, enum `IN` lists, array-overlap for tags, salary threshold via `COALESCE`)
+- **Search & filters** — `job.list` composes SQL conditions dynamically (ILIKE keyword across title/company/tags, enum `IN` lists for type/work-mode/experience, array-overlap for tags, salary threshold via `COALESCE`)
 - **Keyset pagination** — the cursor is `(sortValue, id)`; a tuple comparison (`(createdAt, id) < ($1, $2)`) gives stable pages with no offset drift; the total count deliberately ignores the cursor so "N jobs found" doesn't change while paging
 - **Optimistic updates** — saved-job toggle and applicant status changes update the TanStack Query cache in `onMutate` and roll back on error
 - (Fun fact: the apply mutation is named `submit` because `apply` is a reserved word in tRPC routers — it collides with `Function.prototype.apply`)

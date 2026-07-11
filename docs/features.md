@@ -23,7 +23,7 @@ The centerpiece of the app:
 
 ### Job detail `/jobs/[slug]`
 - Markdown-rendered description (headings, lists, links)
-- Salary badge (annual "$150k – $190k" or hourly "$45 – $60/hr"), type/mode/tags
+- Salary badge — INR renders in lakhs/crores ("₹35L – ₹50L", "₹1.2Cr"); other currencies use "k" notation — plus type, work mode, experience level, and tags
 - Company card with website link and about text
 - Similar jobs (shared tags or same company)
 - View counter, posted-x-ago, per-job SEO metadata (`<title>`, description)
@@ -58,7 +58,7 @@ The centerpiece of the app:
 - Editable any time; shown on every job the company posts
 
 ### Post a job `/dashboard/jobs/new`
-- Full form: title, type, work mode, location, salary range + currency, up to 8 tags (Enter/comma to add)
+- Full form: title, type, work mode, experience level, location, salary range + currency (INR default), up to 8 tags (Enter/comma to add)
 - **Markdown editor with live preview tab** for the description
 - **Save as draft** or **publish immediately**; drafts are invisible to the public
 - Slugs are generated automatically and de-duplicated
