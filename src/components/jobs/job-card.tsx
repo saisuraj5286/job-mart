@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { ClockIcon, MapPinIcon } from "lucide-react";
 
-import { formatSalary, JOB_TYPE_LABELS, WORK_MODE_LABELS, timeAgo } from "~/lib/format";
+import {
+  formatSalary,
+  JOB_TYPE_LABELS,
+  WORK_MODE_LABELS,
+  timeAgo,
+} from "~/lib/format";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent } from "~/components/ui/card";
@@ -21,7 +26,7 @@ export function JobCard({
   const salary = formatSalary(job.salaryMin, job.salaryMax, job.currency);
 
   return (
-    <Card className="hover:ring-foreground/20 hover:shadow-md relative py-0 transition-all duration-200 hover:-translate-y-0.5">
+    <Card className="hover:ring-foreground/20 relative py-0 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
       <CardContent className="flex gap-4 p-5">
         <Avatar className="mt-0.5 size-12 rounded-lg">
           <AvatarImage
@@ -69,7 +74,11 @@ export function JobCard({
             <Badge variant="secondary">{JOB_TYPE_LABELS[job.type]}</Badge>
             <Badge variant="secondary">{WORK_MODE_LABELS[job.workMode]}</Badge>
             {job.tags.slice(0, MAX_VISIBLE_TAGS).map((tag) => (
-              <Badge key={tag} variant="outline" className="text-muted-foreground">
+              <Badge
+                key={tag}
+                variant="outline"
+                className="text-muted-foreground"
+              >
                 {tag}
               </Badge>
             ))}

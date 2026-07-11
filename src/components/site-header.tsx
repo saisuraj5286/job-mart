@@ -25,12 +25,22 @@ export async function SiteHeader() {
             </Button>
             {/* role links live in the avatar menu on mobile */}
             {user?.role === "employer" && (
-              <Button variant="ghost" size="sm" className="max-sm:hidden" asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="max-sm:hidden"
+                asChild
+              >
                 <Link href="/dashboard/jobs">My job posts</Link>
               </Button>
             )}
             {user?.role === "seeker" && (
-              <Button variant="ghost" size="sm" className="max-sm:hidden" asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="max-sm:hidden"
+                asChild
+              >
                 <Link href="/dashboard/applications">My applications</Link>
               </Button>
             )}

@@ -37,7 +37,7 @@ export default async function ApplicantsPage({
           <Button
             variant="ghost"
             size="sm"
-            className="text-muted-foreground -ml-2 mb-2"
+            className="text-muted-foreground mb-2 -ml-2"
             asChild
           >
             <Link href="/dashboard/jobs">

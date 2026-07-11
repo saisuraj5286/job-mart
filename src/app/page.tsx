@@ -62,7 +62,10 @@ export default async function Home() {
               <div className="mt-6 flex flex-wrap items-center justify-center gap-1.5">
                 <span className="text-muted-foreground text-sm">Popular:</span>
                 {popularTags.slice(0, 6).map(({ tag }) => (
-                  <Link key={tag} href={`/jobs?tags=${encodeURIComponent(tag)}`}>
+                  <Link
+                    key={tag}
+                    href={`/jobs?tags=${encodeURIComponent(tag)}`}
+                  >
                     <Badge
                       variant="outline"
                       className="hover:bg-muted cursor-pointer transition-colors"

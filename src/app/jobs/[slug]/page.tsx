@@ -138,13 +138,11 @@ export default async function JobDetailPage({
 
         {/* sidebar */}
         <aside className="space-y-4">
-          <div className="lg:sticky lg:top-24 space-y-4">
+          <div className="space-y-4 lg:sticky lg:top-24">
             <Card>
               <CardContent className="space-y-4 p-5">
                 <div className="space-y-1">
-                  {salary && (
-                    <p className="text-xl font-semibold">{salary}</p>
-                  )}
+                  {salary && <p className="text-xl font-semibold">{salary}</p>}
                   <p className="text-muted-foreground text-sm">
                     {JOB_TYPE_LABELS[job.type]} ·{" "}
                     {WORK_MODE_LABELS[job.workMode]} · {job.location}
@@ -198,10 +196,7 @@ export default async function JobDetailPage({
         <section className="mt-12">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Similar jobs</h2>
-            <Link
-              href="/jobs"
-              className="text-primary text-sm hover:underline"
-            >
+            <Link href="/jobs" className="text-primary text-sm hover:underline">
               Browse all
             </Link>
           </div>

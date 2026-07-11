@@ -106,10 +106,7 @@ export function UserMenu({ user }: UserMenuProps) {
           )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          variant="destructive"
-          onSelect={() => void logout()}
-        >
+        <DropdownMenuItem variant="destructive" onSelect={() => void logout()}>
           <LogOutIcon />
           Sign out
         </DropdownMenuItem>

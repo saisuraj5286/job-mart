@@ -19,12 +19,10 @@ export default async function EditJobPage({
   await requireRole("employer", "/dashboard/jobs");
   const { id } = await params;
 
-  const job = await api.job
-    .byIdForEmployer({ id })
-    .catch((err: unknown) => {
-      if (err instanceof TRPCError && err.code === "NOT_FOUND") return null;
-      throw err;
-    });
+  const job = await api.job.byIdForEmployer({ id }).catch((err: unknown) => {
+    if (err instanceof TRPCError && err.code === "NOT_FOUND") return null;
+    throw err;
+  });
   if (!job) notFound();
 
   return (

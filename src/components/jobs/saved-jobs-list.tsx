@@ -27,8 +27,8 @@ export function SavedJobsList() {
         <BookmarkIcon className="text-muted-foreground size-10" />
         <h2 className="font-semibold">No saved jobs</h2>
         <p className="text-muted-foreground max-w-sm text-sm">
-          Tap the bookmark on any job to save it for later — it&apos;ll wait
-          for you right here.
+          Tap the bookmark on any job to save it for later — it&apos;ll wait for
+          you right here.
         </p>
         <Button asChild>
           <Link href="/jobs">Browse jobs</Link>

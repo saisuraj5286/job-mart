@@ -41,9 +41,7 @@ const CURRENCY_SYMBOLS: Record<string, string> = {
 };
 
 const formatAmount = (value: number) =>
-  value >= 1000
-    ? `${Math.round(value / 1000)}k`
-    : String(value);
+  value >= 1000 ? `${Math.round(value / 1000)}k` : String(value);
 
 /**
  * "$150k – $190k" for annual salaries, "$45 – $60/hr" for hourly rates

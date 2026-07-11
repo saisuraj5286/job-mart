@@ -13,8 +13,7 @@ const globalForDb = globalThis as unknown as {
 };
 
 // Supabase's transaction pooler doesn't support prepared statements
-const conn =
-  globalForDb.conn ?? postgres(env.DATABASE_URL, { prepare: false });
+const conn = globalForDb.conn ?? postgres(env.DATABASE_URL, { prepare: false });
 if (env.NODE_ENV !== "production") globalForDb.conn = conn;
 
 export const db = drizzle(conn, { schema });

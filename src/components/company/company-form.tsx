@@ -28,7 +28,11 @@ interface CompanyFormProps {
   nextPath?: string;
 }
 
-export function CompanyForm({ defaultValues, isNew, nextPath }: CompanyFormProps) {
+export function CompanyForm({
+  defaultValues,
+  isNew,
+  nextPath,
+}: CompanyFormProps) {
   const router = useRouter();
 
   const form = useForm<CompanyInput>({
@@ -46,9 +50,7 @@ export function CompanyForm({ defaultValues, isNew, nextPath }: CompanyFormProps
     onSuccess: () => {
       toast.success(
         isNew ? "Company profile created!" : "Company profile saved",
-        isNew
-          ? { description: "You can post jobs now." }
-          : undefined,
+        isNew ? { description: "You can post jobs now." } : undefined,
       );
       router.refresh();
       if (isNew && nextPath) router.push(nextPath);

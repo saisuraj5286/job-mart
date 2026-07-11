@@ -74,7 +74,11 @@ export function JobRowActions({ job }: JobRowActionsProps) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" aria-label={`Actions for ${job.title}`}>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={`Actions for ${job.title}`}
+          >
             <MoreHorizontalIcon className="size-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -144,7 +148,7 @@ export function JobRowActions({ job }: JobRowActionsProps) {
                 deleteMutation.mutate({ id: job.id });
               }}
               disabled={deleteMutation.isPending}
-              className="bg-destructive text-white hover:bg-destructive/90"
+              className="bg-destructive hover:bg-destructive/90 text-white"
             >
               {deleteMutation.isPending ? "Deleting…" : "Delete job"}
             </AlertDialogAction>

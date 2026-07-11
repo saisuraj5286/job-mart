@@ -86,9 +86,7 @@ export function ApplicantsList({ jobId }: { jobId: string }) {
       toast.error(err.message);
     },
     onSuccess: (updated) => {
-      toast.success(
-        `Moved to ${APPLICATION_STATUS_LABELS[updated.status]}`,
-      );
+      toast.success(`Moved to ${APPLICATION_STATUS_LABELS[updated.status]}`);
     },
   });
 
@@ -114,8 +112,8 @@ export function ApplicantsList({ jobId }: { jobId: string }) {
         <InboxIcon className="text-muted-foreground size-10" />
         <h2 className="font-semibold">No applicants yet</h2>
         <p className="text-muted-foreground max-w-sm text-sm">
-          Applications will land here as candidates apply. Share the public
-          job link to get the word out.
+          Applications will land here as candidates apply. Share the public job
+          link to get the word out.
         </p>
       </div>
     );

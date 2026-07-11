@@ -87,7 +87,12 @@ export function JobsBrowser() {
 
   const pills: { label: string; onRemove: () => void }[] = [
     ...(filters.q
-      ? [{ label: `"${filters.q}"`, onRemove: () => updateFilters({ q: undefined }) }]
+      ? [
+          {
+            label: `"${filters.q}"`,
+            onRemove: () => updateFilters({ q: undefined }),
+          },
+        ]
       : []),
     ...(filters.type ?? []).map((t) => ({
       label: JOB_TYPE_LABELS[t],
@@ -209,7 +214,11 @@ export function JobsBrowser() {
         {pills.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5">
             {pills.map((pill) => (
-              <Badge key={pill.label} variant="secondary" className="gap-1 pr-1">
+              <Badge
+                key={pill.label}
+                variant="secondary"
+                className="gap-1 pr-1"
+              >
                 {pill.label}
                 <button
                   type="button"

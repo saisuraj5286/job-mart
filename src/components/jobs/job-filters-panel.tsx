@@ -166,9 +166,7 @@ export function JobFiltersPanel({
                 <button
                   key={tag}
                   type="button"
-                  onClick={() =>
-                    onChange({ tags: toggle(filters.tags, tag) })
-                  }
+                  onClick={() => onChange({ tags: toggle(filters.tags, tag) })}
                   aria-pressed={active}
                 >
                   <Badge
