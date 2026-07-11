@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ClockIcon, MapPinIcon } from "lucide-react";
 
 import {
+  EXPERIENCE_LABELS,
   formatSalary,
   JOB_TYPE_LABELS,
   WORK_MODE_LABELS,
@@ -73,6 +74,7 @@ export function JobCard({
           <div className="flex flex-wrap items-center gap-1.5">
             <Badge variant="secondary">{JOB_TYPE_LABELS[job.type]}</Badge>
             <Badge variant="secondary">{WORK_MODE_LABELS[job.workMode]}</Badge>
+            <Badge variant="secondary">{EXPERIENCE_LABELS[job.experience]}</Badge>
             {job.tags.slice(0, MAX_VISIBLE_TAGS).map((tag) => (
               <Badge
                 key={tag}

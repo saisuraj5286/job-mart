@@ -45,6 +45,7 @@ export const savedJobRouter = createTRPCRouter({
           title: jobs.title,
           type: jobs.type,
           workMode: jobs.workMode,
+          experience: jobs.experience,
           location: jobs.location,
           salaryMin: jobs.salaryMin,
           salaryMax: jobs.salaryMax,

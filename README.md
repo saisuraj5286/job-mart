@@ -9,7 +9,7 @@ Built with the T3 stack: **Next.js 15 (App Router) · TypeScript · tRPC v11 · 
 ### Public
 
 - **Landing page** — hero search, live stats, popular tag chips, latest openings
-- **Job browsing** (`/jobs`) — debounced keyword search; filters for job type, work mode, location, minimum salary, and tags; sort by newest or salary; **URL-synced filter state** so every search is shareable; cursor-based "Load more" pagination; active-filter pills
+- **Job browsing** (`/jobs`) — debounced keyword search; filters for job type, work mode, experience level, location, minimum salary, and tags; sort by newest or salary; **URL-synced filter state** so every search is shareable; cursor-based "Load more" pagination; active-filter pills
 - **Job detail** (`/jobs/[slug]`) — markdown-rendered description, salary badge, company card, similar jobs, view counter, per-job SEO metadata, sticky mobile apply bar
 
 ### Job seekers

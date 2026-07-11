@@ -14,7 +14,7 @@ JobMart has three kinds of users: **visitors**, **job seekers**, and **employers
 The centerpiece of the app:
 
 - **Keyword search** across title, company name, and tags (debounced as you type)
-- **Filters**: job type (full-time / part-time / contract / internship), work mode (remote / hybrid / on-site), location text match, minimum annual salary, and tags
+- **Filters**: job type (full-time / part-time / contract / internship), work mode (remote / hybrid / on-site), experience level (entry / mid / senior / lead), location text match, minimum annual salary, and tags
 - **Sort**: newest first, or salary high → low
 - **URL-synced state** — every filter/search/sort choice is reflected in the query string, so any search can be bookmarked or shared; opening a shared link restores the exact view
 - **Cursor-based pagination** — "Load more" uses keyset cursors (no duplicate or skipped rows even while new jobs are posted); the result count stays stable across pages

@@ -93,6 +93,8 @@ export const jobRouter = createTRPCRouter({
     if (input.type?.length) conds.push(inArray(jobs.type, input.type));
     if (input.workMode?.length)
       conds.push(inArray(jobs.workMode, input.workMode));
+    if (input.experience?.length)
+      conds.push(inArray(jobs.experience, input.experience));
     if (input.location) conds.push(ilike(jobs.location, `%${input.location}%`));
     if (input.salaryMin) conds.push(sql`${salaryExpr} >= ${input.salaryMin}`);
     if (input.tags?.length) conds.push(arrayOverlaps(jobs.tags, input.tags));
@@ -116,6 +118,7 @@ export const jobRouter = createTRPCRouter({
           title: jobs.title,
           type: jobs.type,
           workMode: jobs.workMode,
+          experience: jobs.experience,
           location: jobs.location,
           salaryMin: jobs.salaryMin,
           salaryMax: jobs.salaryMax,
@@ -195,6 +198,7 @@ export const jobRouter = createTRPCRouter({
           title: jobs.title,
           type: jobs.type,
           workMode: jobs.workMode,
+          experience: jobs.experience,
           location: jobs.location,
           salaryMin: jobs.salaryMin,
           salaryMax: jobs.salaryMax,
@@ -305,6 +309,7 @@ export const jobRouter = createTRPCRouter({
           description: input.description,
           type: input.type,
           workMode: input.workMode,
+          experience: input.experience,
           location: input.location,
           salaryMin: input.salaryMin ?? null,
           salaryMax: input.salaryMax ?? null,
@@ -327,6 +332,7 @@ export const jobRouter = createTRPCRouter({
           description: input.description,
           type: input.type,
           workMode: input.workMode,
+          experience: input.experience,
           location: input.location,
           salaryMin: input.salaryMin ?? null,
           salaryMax: input.salaryMax ?? null,

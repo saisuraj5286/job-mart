@@ -8,8 +8,16 @@ import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 
-import { JOB_TYPE_LABELS, WORK_MODE_LABELS } from "~/lib/format";
-import { JOB_TYPES, WORK_MODES } from "~/lib/job-filters";
+import {
+  EXPERIENCE_LABELS_LONG,
+  JOB_TYPE_LABELS,
+  WORK_MODE_LABELS,
+} from "~/lib/format";
+import {
+  EXPERIENCE_LEVELS,
+  JOB_TYPES,
+  WORK_MODES,
+} from "~/lib/job-filters";
 import { jobInputSchema, type JobInput } from "~/lib/validators";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
@@ -53,6 +61,7 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
       description: defaultValues?.description ?? "",
       type: defaultValues?.type ?? "full_time",
       workMode: defaultValues?.workMode ?? "remote",
+      experience: defaultValues?.experience ?? "mid",
       location: defaultValues?.location ?? "",
       salaryMin: defaultValues?.salaryMin,
       salaryMax: defaultValues?.salaryMax,
@@ -128,7 +137,7 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
           )}
         />
 
-        <div className="grid gap-5 sm:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <FormField
             control={form.control}
             name="type"
@@ -179,12 +188,39 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
           />
           <FormField
             control={form.control}
+            name="experience"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Experience</FormLabel>
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {EXPERIENCE_LEVELS.map((level) => (
+                      <SelectItem key={level} value={level}>
+                        {EXPERIENCE_LABELS_LONG[level]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="location"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Location *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Remote (US) / Austin, TX" {...field} />
+                  <Input
+                    placeholder="Remote (India) / Bengaluru"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

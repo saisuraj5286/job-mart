@@ -13,6 +13,7 @@ import {
 import ReactMarkdown from "react-markdown";
 
 import {
+  EXPERIENCE_LABELS,
   formatSalary,
   JOB_TYPE_LABELS,
   WORK_MODE_LABELS,
@@ -121,6 +122,9 @@ export default async function JobDetailPage({
               <Badge variant="secondary">
                 {WORK_MODE_LABELS[job.workMode]}
               </Badge>
+              <Badge variant="secondary">
+                {EXPERIENCE_LABELS[job.experience]}
+              </Badge>
               {job.tags.map((tag) => (
                 <Badge key={tag} variant="outline">
                   {tag}
@@ -145,7 +149,8 @@ export default async function JobDetailPage({
                   {salary && <p className="text-xl font-semibold">{salary}</p>}
                   <p className="text-muted-foreground text-sm">
                     {JOB_TYPE_LABELS[job.type]} ·{" "}
-                    {WORK_MODE_LABELS[job.workMode]} · {job.location}
+                    {WORK_MODE_LABELS[job.workMode]} ·{" "}
+                    {EXPERIENCE_LABELS[job.experience]} · {job.location}
                   </p>
                 </div>
                 <ApplyCta {...applyCtaProps} className="w-full" />

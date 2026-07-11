@@ -59,6 +59,7 @@ export const jobInputSchema = z
       .max(20000),
     type: z.enum(["full_time", "part_time", "contract", "internship"]),
     workMode: z.enum(["remote", "hybrid", "onsite"]),
+    experience: z.enum(["entry", "mid", "senior", "lead"]),
     location: z.string().trim().min(2, "Where is this role based?").max(255),
     salaryMin: z.coerce.number().int().min(0).max(100_000_000).optional(),
     salaryMax: z.coerce.number().int().min(0).max(100_000_000).optional(),

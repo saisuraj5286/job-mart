@@ -1,4 +1,9 @@
-import type { JobSort, JobType, WorkMode } from "~/lib/job-filters";
+import type {
+  ExperienceLevel,
+  JobSort,
+  JobType,
+  WorkMode,
+} from "~/lib/job-filters";
 
 export const JOB_TYPE_LABELS: Record<JobType, string> = {
   full_time: "Full-time",
@@ -11,6 +16,21 @@ export const WORK_MODE_LABELS: Record<WorkMode, string> = {
   remote: "Remote",
   hybrid: "Hybrid",
   onsite: "On-site",
+};
+
+export const EXPERIENCE_LABELS: Record<ExperienceLevel, string> = {
+  entry: "Entry level",
+  mid: "Mid level",
+  senior: "Senior",
+  lead: "Lead / Manager",
+};
+
+/** Longer variants for the filter panel. */
+export const EXPERIENCE_LABELS_LONG: Record<ExperienceLevel, string> = {
+  entry: "Entry level (0–2 yrs)",
+  mid: "Mid level (2–5 yrs)",
+  senior: "Senior (5–8 yrs)",
+  lead: "Lead / Manager (8+ yrs)",
 };
 
 export const JOB_SORT_LABELS: Record<JobSort, string> = {

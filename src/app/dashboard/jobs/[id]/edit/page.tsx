@@ -43,6 +43,7 @@ export default async function EditJobPage({
               description: job.description,
               type: job.type,
               workMode: job.workMode,
+              experience: job.experience,
               location: job.location,
               salaryMin: job.salaryMin ?? undefined,
               salaryMax: job.salaryMax ?? undefined,

@@ -9,16 +9,20 @@ export const JOB_TYPES = [
 
 export const WORK_MODES = ["remote", "hybrid", "onsite"] as const;
 
+export const EXPERIENCE_LEVELS = ["entry", "mid", "senior", "lead"] as const;
+
 export const JOB_SORTS = ["newest", "salary"] as const;
 
 export type JobType = (typeof JOB_TYPES)[number];
 export type WorkMode = (typeof WORK_MODES)[number];
+export type ExperienceLevel = (typeof EXPERIENCE_LEVELS)[number];
 export type JobSort = (typeof JOB_SORTS)[number];
 
 export const jobFiltersSchema = z.object({
   q: z.string().trim().max(200).optional(),
   type: z.array(z.enum(JOB_TYPES)).optional(),
   workMode: z.array(z.enum(WORK_MODES)).optional(),
+  experience: z.array(z.enum(EXPERIENCE_LEVELS)).optional(),
   location: z.string().trim().max(200).optional(),
   salaryMin: z.coerce.number().int().min(0).max(10_000_000).optional(),
   tags: z.array(z.string().trim().min(1).max(50)).max(10).optional(),
@@ -43,6 +47,7 @@ export function parseJobFilters(
     q: params.q ?? undefined,
     type: splitParam(params.type),
     workMode: splitParam(params.workMode),
+    experience: splitParam(params.experience),
     location: params.location ?? undefined,
     salaryMin: params.salaryMin ?? undefined,
     tags: splitParam(params.tags),
@@ -58,6 +63,8 @@ export function serializeJobFilters(filters: JobFilters): string {
   if (filters.type?.length) params.set("type", filters.type.join(","));
   if (filters.workMode?.length)
     params.set("workMode", filters.workMode.join(","));
+  if (filters.experience?.length)
+    params.set("experience", filters.experience.join(","));
   if (filters.location) params.set("location", filters.location);
   if (filters.salaryMin) params.set("salaryMin", String(filters.salaryMin));
   if (filters.tags?.length) params.set("tags", filters.tags.join(","));
@@ -70,6 +77,7 @@ export function countActiveFilters(filters: JobFilters): number {
     filters.q,
     filters.type?.length,
     filters.workMode?.length,
+    filters.experience?.length,
     filters.location,
     filters.salaryMin,
     filters.tags?.length,

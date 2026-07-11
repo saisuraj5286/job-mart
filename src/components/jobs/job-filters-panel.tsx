@@ -3,14 +3,20 @@
 import { XIcon } from "lucide-react";
 
 import {
+  EXPERIENCE_LEVELS,
   JOB_TYPES,
   WORK_MODES,
   countActiveFilters,
+  type ExperienceLevel,
   type JobFilters,
   type JobType,
   type WorkMode,
 } from "~/lib/job-filters";
-import { JOB_TYPE_LABELS, WORK_MODE_LABELS } from "~/lib/format";
+import {
+  EXPERIENCE_LABELS_LONG,
+  JOB_TYPE_LABELS,
+  WORK_MODE_LABELS,
+} from "~/lib/format";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -110,6 +116,29 @@ export function JobFiltersPanel({
               }
             />
             {WORK_MODE_LABELS[mode]}
+          </Label>
+        ))}
+      </fieldset>
+
+      <fieldset className="space-y-2.5">
+        <legend className="mb-2 text-sm font-medium">Experience level</legend>
+        {EXPERIENCE_LEVELS.map((level) => (
+          <Label
+            key={level}
+            className="flex cursor-pointer items-center gap-2 font-normal"
+          >
+            <Checkbox
+              checked={filters.experience?.includes(level) ?? false}
+              onCheckedChange={() =>
+                onChange({
+                  experience: toggle<ExperienceLevel>(
+                    filters.experience,
+                    level,
+                  ),
+                })
+              }
+            />
+            {EXPERIENCE_LABELS_LONG[level]}
           </Label>
         ))}
       </fieldset>

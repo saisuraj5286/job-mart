@@ -39,6 +39,13 @@ export const jobStatusEnum = pgEnum("job_mart_job_status", [
   "closed",
 ]);
 
+export const experienceLevelEnum = pgEnum("job_mart_experience_level", [
+  "entry",
+  "mid",
+  "senior",
+  "lead",
+]);
+
 export const applicationStatusEnum = pgEnum("job_mart_application_status", [
   "pending",
   "reviewed",
@@ -102,6 +109,7 @@ export const jobs = createTable(
     description: d.text().notNull(), // markdown
     type: jobTypeEnum().notNull(),
     workMode: workModeEnum().notNull(),
+    experience: experienceLevelEnum().default("mid").notNull(),
     location: d.varchar({ length: 255 }).notNull(),
     salaryMin: d.integer(),
     salaryMax: d.integer(),

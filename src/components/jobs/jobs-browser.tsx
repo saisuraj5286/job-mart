@@ -17,6 +17,7 @@ import {
   type JobFilters,
 } from "~/lib/job-filters";
 import {
+  EXPERIENCE_LABELS,
   formatMinSalaryLabel,
   JOB_SORT_LABELS,
   JOB_TYPE_LABELS,
@@ -110,6 +111,15 @@ export function JobsBrowser() {
         updateFilters({
           workMode: filters.workMode?.filter((v) => v !== m).length
             ? filters.workMode?.filter((v) => v !== m)
+            : undefined,
+        }),
+    })),
+    ...(filters.experience ?? []).map((level) => ({
+      label: EXPERIENCE_LABELS[level],
+      onRemove: () =>
+        updateFilters({
+          experience: filters.experience?.filter((v) => v !== level).length
+            ? filters.experience?.filter((v) => v !== level)
             : undefined,
         }),
     })),
