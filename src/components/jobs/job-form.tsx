@@ -192,82 +192,87 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
           />
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-3">
-          <FormField
-            control={form.control}
-            name="salaryMin"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Salary min</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    min={0}
-                    placeholder="120000"
-                    value={field.value ?? ""}
-                    onChange={(e) =>
-                      field.onChange(
-                        e.target.value === ""
-                          ? undefined
-                          : e.target.valueAsNumber,
-                      )
-                    }
-                  />
-                </FormControl>
-                <FormDescription>Annual, or hourly rate</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="salaryMax"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Salary max</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    min={0}
-                    placeholder="160000"
-                    value={field.value ?? ""}
-                    onChange={(e) =>
-                      field.onChange(
-                        e.target.value === ""
-                          ? undefined
-                          : e.target.valueAsNumber,
-                      )
-                    }
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="currency"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Currency</FormLabel>
-                <Select value={field.value} onValueChange={field.onChange}>
+        <div className="space-y-2">
+          <div className="grid gap-5 sm:grid-cols-3">
+            <FormField
+              control={form.control}
+              name="salaryMin"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Salary min</FormLabel>
                   <FormControl>
-                    <SelectTrigger className="w-full">
-                      <SelectValue />
-                    </SelectTrigger>
+                    <Input
+                      type="number"
+                      min={0}
+                      placeholder="120000"
+                      value={field.value ?? ""}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value === ""
+                            ? undefined
+                            : e.target.valueAsNumber,
+                        )
+                      }
+                    />
                   </FormControl>
-                  <SelectContent>
-                    {CURRENCIES.map((c) => (
-                      <SelectItem key={c} value={c}>
-                        {c}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="salaryMax"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Salary max</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      min={0}
+                      placeholder="160000"
+                      value={field.value ?? ""}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value === ""
+                            ? undefined
+                            : e.target.valueAsNumber,
+                        )
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="currency"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Currency</FormLabel>
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {CURRENCIES.map((c) => (
+                        <SelectItem key={c} value={c}>
+                          {c}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <p className="text-muted-foreground text-sm">
+            Annual figures or hourly rates — leave blank if you&apos;d rather
+            not disclose.
+          </p>
         </div>
 
         <FormField
