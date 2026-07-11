@@ -40,26 +40,41 @@ const CURRENCY_SYMBOLS: Record<string, string> = {
   CAD: "CA$",
 };
 
-const formatAmount = (value: number) =>
-  value >= 1000 ? `${Math.round(value / 1000)}k` : String(value);
+const trimmed = (n: number) =>
+  (Math.round(n * 10) / 10).toString().replace(/\.0$/, "");
+
+const formatAmount = (value: number, currency: string) => {
+  // INR reads in lakhs and crores, not thousands
+  if (currency === "INR") {
+    if (value >= 10_000_000) return `${trimmed(value / 10_000_000)}Cr`;
+    if (value >= 100_000) return `${trimmed(value / 100_000)}L`;
+    return String(value);
+  }
+  return value >= 1000 ? `${Math.round(value / 1000)}k` : String(value);
+};
 
 /**
- * "$150k – $190k" for annual salaries, "$45 – $60/hr" for hourly rates
- * (heuristic: amounts under 1000 are hourly).
+ * "₹18L – ₹32L" / "$150k – $190k" for annual salaries, "$45 – $60/hr" for
+ * hourly rates (heuristic: amounts under 1000 are hourly).
  */
 export function formatSalary(
   min: number | null,
   max: number | null,
-  currency = "USD",
+  currency = "INR",
 ): string | null {
   if (min == null && max == null) return null;
   const symbol = CURRENCY_SYMBOLS[currency] ?? `${currency} `;
   const hourly = (min ?? max ?? 0) < 1000;
   const suffix = hourly ? "/hr" : "";
   if (min != null && max != null && min !== max) {
-    return `${symbol}${formatAmount(min)} – ${symbol}${formatAmount(max)}${suffix}`;
+    return `${symbol}${formatAmount(min, currency)} – ${symbol}${formatAmount(max, currency)}${suffix}`;
   }
-  return `${symbol}${formatAmount(min ?? max ?? 0)}${suffix}`;
+  return `${symbol}${formatAmount(min ?? max ?? 0, currency)}${suffix}`;
+}
+
+/** "₹15L+" — label for the minimum-salary filter (board currency is INR). */
+export function formatMinSalaryLabel(value: number): string {
+  return `₹${formatAmount(value, "INR")}+`;
 }
 
 export function timeAgo(date: Date): string {

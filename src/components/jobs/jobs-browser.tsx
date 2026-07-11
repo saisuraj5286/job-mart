@@ -17,6 +17,7 @@ import {
   type JobFilters,
 } from "~/lib/job-filters";
 import {
+  formatMinSalaryLabel,
   JOB_SORT_LABELS,
   JOB_TYPE_LABELS,
   WORK_MODE_LABELS,
@@ -123,7 +124,7 @@ export function JobsBrowser() {
     ...(filters.salaryMin
       ? [
           {
-            label: `$${Math.round(filters.salaryMin / 1000)}k+`,
+            label: formatMinSalaryLabel(filters.salaryMin),
             onRemove: () => updateFilters({ salaryMin: undefined }),
           },
         ]

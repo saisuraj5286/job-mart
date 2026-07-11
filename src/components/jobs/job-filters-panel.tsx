@@ -27,12 +27,12 @@ import { api } from "~/trpc/react";
 
 const SALARY_OPTIONS = [
   { value: 0, label: "Any salary" },
-  { value: 50_000, label: "$50k+" },
-  { value: 80_000, label: "$80k+" },
-  { value: 100_000, label: "$100k+" },
-  { value: 130_000, label: "$130k+" },
-  { value: 160_000, label: "$160k+" },
-  { value: 200_000, label: "$200k+" },
+  { value: 500_000, label: "₹5L+" },
+  { value: 1_000_000, label: "₹10L+" },
+  { value: 1_500_000, label: "₹15L+" },
+  { value: 2_500_000, label: "₹25L+" },
+  { value: 4_000_000, label: "₹40L+" },
+  { value: 6_000_000, label: "₹60L+" },
 ];
 
 interface JobFiltersPanelProps {

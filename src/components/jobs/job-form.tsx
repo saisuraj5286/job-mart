@@ -34,7 +34,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { Textarea } from "~/components/ui/textarea";
 import { api } from "~/trpc/react";
 
-const CURRENCIES = ["USD", "EUR", "GBP", "INR", "CAD"] as const;
+const CURRENCIES = ["INR", "USD", "EUR", "GBP", "CAD"] as const;
 
 interface JobFormProps {
   mode: "create" | "edit";
@@ -56,7 +56,7 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
       location: defaultValues?.location ?? "",
       salaryMin: defaultValues?.salaryMin,
       salaryMax: defaultValues?.salaryMax,
-      currency: defaultValues?.currency ?? "USD",
+      currency: defaultValues?.currency ?? "INR",
       tags: defaultValues?.tags ?? [],
       status: defaultValues?.status ?? "draft",
     },
@@ -204,7 +204,7 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
                     <Input
                       type="number"
                       min={0}
-                      placeholder="120000"
+                      placeholder="1800000"
                       value={field.value ?? ""}
                       onChange={(e) =>
                         field.onChange(
@@ -229,7 +229,7 @@ export function JobForm({ mode, jobId, defaultValues }: JobFormProps) {
                     <Input
                       type="number"
                       min={0}
-                      placeholder="160000"
+                      placeholder="3000000"
                       value={field.value ?? ""}
                       onChange={(e) =>
                         field.onChange(
